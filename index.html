@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>R-LogReg</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <section class="wrapper">
+      <div class="form signup">
+        <header>Signup</header>
+        <form action="">
+          <input
+            type="text"
+            class="fullName"
+            placeholder="Full name"
+            required
+          />
+          <input
+            type="text"
+            class="email"
+            placeholder="Email address"
+            required
+          />
+          <input
+            type="password"
+            class="password"
+            placeholder="Password"
+            required
+          />
+          <div class="checkbox">
+            <input type="checkbox" id="signupCheck" />
+            <label for="signupCheck">I Accept all terms & condtions</label>
+          </div>
+          <input type="submit" id="btnsubmit" value="Signup" />
+        </form>
+      </div>
+
+      <div class="form login">
+        <header>Login</header>
+        <form action="">
+          <input
+            type="email"
+            class="email_login"
+            placeholder="Email address"
+            required
+          />
+          <input
+            type="password"
+            class="password_login"
+            placeholder="Password"
+            required
+          />
+          <a href="#">Forgot password?</a>
+          <input type="submit" id="btnlogin" value="Login" />
+        </form>
+      </div>
+    </section>
+
+    <script>
+      let btnsubmit = document.querySelector("#btnsubmit");
+      let btnlogin = document.querySelector("#btnlogin");
+
+      let wrapper = document.querySelector(".wrapper");
+      let signupHeader = document.querySelector(".signup header");
+      let loginHeader = document.querySelector(".login header");
+
+      let fullName = document.querySelector(".fullName");
+      let email = document.querySelector(".email");
+      let password = document.querySelector(".password");
+
+      let email_login = document.querySelector(".email_login");
+      let password_login = document.querySelector(".password_login");
+
+      var userName = null;
+      var userEmail = null;
+      var userpassword = null;
+
+      let showLogin = () => {
+        wrapper.classList.add("active");
+      };
+      let showSignup = () => {
+        wrapper.classList.remove("active");
+      };
+      loginHeader.addEventListener("click", () => showLogin());
+      signupHeader.addEventListener("click", () => showSignup());
+
+      btnsubmit.addEventListener("click", () => {
+        if (fullName.value != "" && email.value != "" && password.value != "") {
+          alert("Welcome " + fullName.value + " the account has been created.");
+          userName = fullName.value;
+          userEmail = email.value;
+          userpassword = password.value;
+          showLogin();
+          fullName.value = "";
+          email.value = "";
+          password.value = "";
+        }
+      });
+
+      btnlogin.addEventListener("click", () => {
+        if (email_login.value != "" && password_login.value != "") {
+          if (
+            email_login.value == userEmail &&
+            password_login.value == userpassword
+          ) {
+            alert("Welcome Back " + userName);
+            email_login.value = "";
+            password_login.value = "";
+          } else {
+            alert("Incorrect email or password");
+            email_login.value = "";
+            password_login.value = "";
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
